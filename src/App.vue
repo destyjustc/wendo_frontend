@@ -1384,7 +1384,7 @@ data-dropdown-toggle="click" data-dropdown-persistent="true" id="m_quicksearch" 
       					<div class="m-messenger__messages mCustomScrollbar _mCS_6 mCS-autoHide" style="height: 653px; position: relative; overflow: visible;"><div id="mCSB_6" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: none;" tabindex="0"><div id="mCSB_6_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
       						<div class="m-messenger__message m-messenger__message--in">
       							<div class="m-messenger__message-pic">
-      								<img src="./assets/app/media/img//users/user3.jpg" alt="" class="mCS_img_loaded">
+      								<img src="static/user4.jpg" alt="" class="mCS_img_loaded">
       							</div>
       							<div class="m-messenger__message-body">
       								<div class="m-messenger__message-arrow"></div>
@@ -1410,7 +1410,7 @@ data-dropdown-toggle="click" data-dropdown-persistent="true" id="m_quicksearch" 
       						</div>
       						<div class="m-messenger__message m-messenger__message--in">
       							<div class="m-messenger__message-pic">
-      								<img src="./assets/app/media/img//users/user3.jpg" alt="" class="mCS_img_loaded">
+      								<img src="static/user4.jpg" alt="" class="mCS_img_loaded">
       							</div>
       							<div class="m-messenger__message-body">
       								<div class="m-messenger__message-arrow"></div>
@@ -1437,7 +1437,7 @@ data-dropdown-toggle="click" data-dropdown-persistent="true" id="m_quicksearch" 
       						<div class="m-messenger__datetime">2:30PM</div>
       						<div class="m-messenger__message m-messenger__message--in">
       							<div class="m-messenger__message-pic">
-      								<img src="./assets/app/media/img//users/user3.jpg" alt="" class="mCS_img_loaded">
+      								<img src="static/user4.jpg" alt="" class="mCS_img_loaded">
       							</div>
       							<div class="m-messenger__message-body">
       								<div class="m-messenger__message-arrow"></div>
@@ -1500,7 +1500,7 @@ data-dropdown-toggle="click" data-dropdown-persistent="true" id="m_quicksearch" 
       						</div>
       						<div class="m-messenger__message m-messenger__message--in">
       							<div class="m-messenger__message-pic">
-      								<img src="./assets/app/media/img//users/user3.jpg" alt="" class="mCS_img_loaded">
+      								<img src="static/user4.jpg" alt="" class="mCS_img_loaded">
       							</div>
       							<div class="m-messenger__message-body">
       								<div class="m-messenger__message-arrow"></div>
