@@ -45,4 +45,5 @@ npm test
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 https://cordova.apache.org/docs/en/latest/guide/cli/index.html
+
 https://www.clearlyagileinc.com/blog/using-the-visual-studio-android-emulator-with-android-studio
