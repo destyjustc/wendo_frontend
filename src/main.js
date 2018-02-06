@@ -25,6 +25,8 @@ import {
   AppPlugin
 } from 'vux'
 
+import { routes } from './router/index';
+
 require('es6-promise').polyfill()
 
 Vue.use(VueRouter)
@@ -102,7 +104,7 @@ const FastClick = require('fastclick')
 FastClick.attach(document.body)
 
 // The following line will be replaced with by vux-loader with routes in ./demo_list.json
-const routes = []
+// const routes = []
 
 const router = new VueRouter({
   routes

@@ -1,15 +1,19 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import HelloWorld from '@/components/HelloWorld';
+import StudentList from '@/components/students/StudentList';
+import TeacherList from '@/components/teachers/TeacherList';
 
-Vue.use(Router)
-
-export default new Router({
-  routes: [
+export const routes = [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+        path: '/',
+        name: 'HelloWorld',
+        component: HelloWorld
+    },
+    {
+        path: '/studentlist',
+        component: StudentList
+    },
+    {
+        path: '/teacherlist',
+        component: TeacherList
     }
-  ]
-})
+];
