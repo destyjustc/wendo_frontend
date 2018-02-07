@@ -25,7 +25,7 @@ import {
   AppPlugin
 } from 'vux'
 
-import { routes } from './router/index';
+import { routes } from './router/index'
 
 require('es6-promise').polyfill()
 

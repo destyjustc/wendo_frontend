@@ -1,6 +1,8 @@
-import HelloWorld from '@/components/HelloWorld';
-import StudentList from '@/components/students/StudentList';
-import TeacherList from '@/components/teachers/TeacherList';
+import HelloWorld from '@/components/HelloWorld'
+import Student from '@/components/students/Student'
+import StudentList from '@/components/students/StudentList'
+import Teacher from '@/components/teachers/Teacher'
+import TeacherList from '@/components/teachers/TeacherList'
 
 export const routes = [
     {
@@ -13,7 +15,15 @@ export const routes = [
         component: StudentList
     },
     {
+        path: '/student',
+        component: Student
+    },
+    {
         path: '/teacherlist',
         component: TeacherList
+    },
+    {
+        path: '/teacher',
+        component: Teacher
     }
-];
+]
