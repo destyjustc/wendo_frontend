@@ -23,7 +23,7 @@ export const routes = [
         component: TeacherList
     },
     {
-        path: '/teacher',
+        path: '/teacher/:teacherId',
         component: Teacher
     }
 ]
