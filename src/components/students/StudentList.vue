@@ -1,7 +1,12 @@
 <template>
     <div>
-        Student List
-        <button @click="getStudents">Students</button>
+        <h3>
+            Student List
+        </h3>
+        <router-link to="/student/new" activeClass="active">
+            <button>Add Student</button>
+        </router-link>
+        <div v-for="student in students">{{ student.id }} {{ student.name }}</div>
     </div>
 </template>
 <script>
@@ -9,18 +14,26 @@
         name: 'StudentList',
         data () {
             return {
-                msg: 'Welcome to Your Vue.js App'
+                msg: 'Welcome to Your Vue.js App',
+                students: [
+                    {id: 1, name: 'kevin'},
+                    {id: 2, name: 'josh'}
+                ]
             }
         },
-        computed: {
-
-        },
-        methods: {
-            getStudents() {
-                this.$http.get('https://wendo-stage.herokuapp.com/student/').then(response => {
+        created() {
+            this.$http.get('https://wendo-stage.herokuapp.com/student').then(
+                response => {
                     console.log('get students: ', response)
                 })
-            }
+        },
+        computed: {},
+        methods: {
+//            getStudents() {
+//                this.$http.get('https://wendo-stage.herokuapp.com/student').then(response => {
+//                    console.log('get students: ', response)
+//                })
+//            }
         }
     }
 </script>

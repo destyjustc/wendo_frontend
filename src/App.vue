@@ -12,12 +12,12 @@
     <!-- drawer content -->
     <div slot="drawer">
       <group title="Drawer demo(beta)" style="margin-top:20px;">
-        <cell title="Demo" link="/demo" value="演示" @click.native="drawerVisibility = false">
-        </cell>
-        <cell title="Buy me a coffee" link="project/donate" @click.native="drawerVisibility = false">
-        </cell>
-        <cell title="Github" link="http://github.com/airyland/vux" value="Star me" @click.native="drawerVisibility = false">
-        </cell>
+        <router-link to="/studentlist" activeClass="active">
+          <cell title="Students" @click.native="drawerVisibility = false"></cell>
+        </router-link>
+        <router-link to="/teacherlist" activeClass="active">
+          <cell title="Teachers" @click.native="drawerVisibility = false"></cell>
+        </router-link>
       </group>
       <group title="showMode">
         <radio v-model="showMode" :options="['push', 'overlay']" @on-change="onShowModeChange"></radio>

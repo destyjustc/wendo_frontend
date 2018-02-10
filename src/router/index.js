@@ -15,7 +15,7 @@ export const routes = [
         component: StudentList
     },
     {
-        path: '/student',
+        path: '/student/:studentId',
         component: Student
     },
     {
