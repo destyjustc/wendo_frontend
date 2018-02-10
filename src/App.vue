@@ -18,6 +18,12 @@
         <router-link to="/teacherlist" activeClass="active">
           <cell title="Teachers" @click.native="drawerVisibility = false"></cell>
         </router-link>
+        <router-link to="/schoollist" activeClass="active">
+          <cell title="Schools" @click.native="drawerVisibility = false"></cell>
+        </router-link>
+        <router-link to="/classlist" activeClass="active">
+          <cell title="Classes" @click.native="drawerVisibility = false"></cell>
+        </router-link>
       </group>
       <group title="showMode">
         <radio v-model="showMode" :options="['push', 'overlay']" @on-change="onShowModeChange"></radio>
