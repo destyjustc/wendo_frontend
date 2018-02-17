@@ -6,7 +6,7 @@
         <router-link to="/student/new" activeClass="active">
             <button>Add Student</button>
         </router-link>
-        <div v-for="student in students">{{ student.id }} {{ student.name }}</div>
+        <div v-for="student in students">{{ student.id }} {{ student.user_id }}</div>
     </div>
 </template>
 <script>
@@ -15,16 +15,13 @@
         data () {
             return {
                 msg: 'Welcome to Your Vue.js App',
-                students: [
-                    {id: 1, name: 'kevin'},
-                    {id: 2, name: 'josh'}
-                ]
+                students: []
             }
         },
         created() {
             this.$http.get('https://wendo-stage.herokuapp.com/student').then(
                 response => {
-                    console.log('get students: ', response)
+                    this.students = response.data
                 })
         },
         computed: {},
