@@ -7,15 +7,19 @@
             <button>Add Student</button>
         </router-link>
         <div v-for="student in students">{{ student.id }} {{ student.user_id }}</div>
+        <qrcode-vue :value="qrValue" :size="qrSize" level="H"></qrcode-vue>
     </div>
 </template>
 <script>
+    import QrcodeVue from 'qrcode.vue'
     export default {
         name: 'StudentList',
         data () {
             return {
                 msg: 'Welcome to Your Vue.js App',
-                students: []
+                students: [],
+                qrValue: 'https://example.com',
+                qrSize: 300
             }
         },
         created() {
@@ -25,12 +29,9 @@
                 })
         },
         computed: {},
-        methods: {
-//            getStudents() {
-//                this.$http.get('https://wendo-stage.herokuapp.com/student').then(response => {
-//                    console.log('get students: ', response)
-//                })
-//            }
+        methods: {},
+        components: {
+            QrcodeVue
         }
     }
 </script>
