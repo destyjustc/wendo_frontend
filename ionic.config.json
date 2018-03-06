@@ -1,0 +1,8 @@
+{
+  "name": "wendo-mobile",
+  "app_id": "442f04db",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
