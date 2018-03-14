@@ -4,10 +4,10 @@
             School
         </h3>
         <div>
-            School Id: <input v-if="mode !== 'view'" v-model="school.id"><span v-else>{{school.id}}</span>
+            School Name: <input v-if="mode !== 'view'" v-model="school.name"><span v-else>{{school.name}}</span>
         </div>
         <div>
-            School Name: <input v-if="mode !== 'view'" v-model="school.name"><span v-else>{{school.name}}</span>
+            School Describe: <input v-if="mode !== 'view'" v-model="school.describe"><span v-else>{{school.describe}}</span>
         </div>
         <button v-if="mode === 'create'" @click="createSchool">Create School</button>
         <button v-if="mode === 'view'" @click="editSchool">Edit School</button>
@@ -20,30 +20,54 @@
             if (this.$route.params.schoolId === 'new') {
                 this.mode = 'create'
             } else {
-                console.log('need to call get school API')
+                this.$http.get('https://wendo-stage.herokuapp.com/school/' + this.$route.params.schoolId).then(
+                    response => {
+                        this.school = response.data
+                    })
             }
         },
         data() {
             return {
                 mode: 'view',
                 school: {
-                    id: null,
-                    name: null
+                    name: null,
+                    describe: null
                 }
             }
         },
         methods: {
             createSchool() {
                 const sch = {
-                    id: this.school.id,
-                    name: this.school.name
+                    name: this.school.name,
+                    describe: this.school.describe
                 }
-                console.log('need to call create teacher API', sch)
+                this.$http.post('https://wendo-stage.herokuapp.com/school/', sch, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(
+                    response => {
+                        console.log('create success! ', response)
+                    }
+                )
             },
             editSchool() {
                 this.mode = 'edit'
             },
             saveSchool() {
+                const sch = {
+                    name: this.school.name,
+                    describe: this.school.describe
+                }
+                this.$http.put('https://wendo-stage.herokuapp.com/school/' + this.school.id, sch, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(
+                    response => {
+                        this.school = response.data
+                    }
+                )
                 this.mode = 'view'
             }
         }

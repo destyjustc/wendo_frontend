@@ -6,7 +6,7 @@
         <router-link to="/school/new" activeClass="active">
             <button>Add School</button>
         </router-link>
-        <div v-for="school in schools">{{ school.id }} {{ school.name }}</div>
+        <div v-for="school in schools" @click="navToSchool(school.id)">{{ school.name }} {{ school.describe }} {{ school.id}}</div>
     </div>
 </template>
 <script>
@@ -15,14 +15,19 @@
         data () {
             return {
                 msg: 'Welcome to Your Vue.js App',
-                schools: [
-                    {id: 1, name: 'blue shit'},
-                    {id: 2, name: 'new oriental'}
-                ]
+                schools: []
             }
         },
         created() {
-            console.log('need API for school list')
+            this.$http.get('https://wendo-stage.herokuapp.com/school').then(
+                response => {
+                    this.schools = response.data
+                })
+        },
+        methods: {
+            navToSchool(id) {
+                this.$router.push({ path: '/school/' + id})
+            }
         }
     }
 </script>
