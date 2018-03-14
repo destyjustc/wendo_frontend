@@ -4,10 +4,22 @@
             Student
         </h3>
         <div>
-            Student Id: <input v-if="mode !== 'view'" v-model="student.id"><span v-else>{{student.id}}</span>
+            Student First Name: <input v-if="mode !== 'view'" v-model="student.firstname"><span v-else>{{student.firstname}}</span>
         </div>
         <div>
-            Student Name: <input v-if="mode !== 'view'" v-model="student.name"><span v-else>{{student.name}}</span>
+            Student Last Name: <input v-if="mode !== 'view'" v-model="student.lastname"><span v-else>{{student.lastname}}</span>
+        </div>
+        <div>
+            Student Username: <input v-if="mode !== 'view'" v-model="student.username"><span v-else>{{student.username}}</span>
+        </div>
+        <div>
+            Student Password: <input v-if="mode !== 'view'" v-model="student.password" type="password"><span v-else>{{student.password}}</span>
+        </div>
+        <div>
+            Student Email: <input v-if="mode !== 'view'" v-model="student.email"><span v-else>{{student.email}}</span>
+        </div>
+        <div>
+            Student Phone: <input v-if="mode !== 'view'" v-model="student.phone"><span v-else>{{student.phone}}</span>
         </div>
         <button v-if="mode === 'create'" @click="createStudent">Create Student</button>
         <button v-if="mode === 'view'" @click="editStudent">Edit Student</button>
@@ -20,7 +32,7 @@
             if (this.$route.params.studentId === 'new') {
                 this.mode = 'create'
             } else {
-                this.$http.get('https://wendo-stage.herokuapp.com/student/' + this.$route.params.studentId)
+                this.$http.get('https://wendo-stage.herokuapp.com/student/school/' + this.$route.params.schoolId + '/' + this.$route.params.studentId)
                     .then(
                         response => {
                             this.student = response.data
@@ -31,24 +43,33 @@
             return {
                 mode: 'view',
                 student: {
-                    id: null,
-                    name: null
+                    firstname: null,
+                    lastname: null,
+                    username: null,
+                    password: null,
+                    email: null,
+                    phone: null
                 }
             }
         },
         methods: {
             createStudent() {
                 const std = {
-                    id: this.student.id,
-                    name: this.student.name
+                    firstname: this.student.firstname,
+                    lastname: this.student.lastname,
+                    username: this.student.username,
+                    password: this.student.password,
+                    email: this.student.email,
+                    phone: this.student.phone
                 }
-                this.$http.post('https://wendo-stage.herokuapp.com/student/', std, {
+                this.$http.post('https://wendo-stage.herokuapp.com/student/school/' + this.$route.params.schoolId, std, {
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 }).then(
                     response => {
-                        console.log(response)
+                        this.student = response.data
+                        this.mode = 'view'
                     }
                 )
             },
@@ -56,7 +77,24 @@
                 this.mode = 'edit'
             },
             saveStudent() {
-                this.mode = 'view'
+                const std = {
+                    firstname: this.student.firstname,
+                    lastname: this.student.lastname,
+                    username: this.student.username,
+                    password: this.student.password,
+                    email: this.student.email,
+                    phone: this.student.phone
+                }
+                this.$http.put('https://wendo-stage.herokuapp.com/student/school/' + this.$route.params.schoolId + '/' + this.student.id, std, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(
+                    response => {
+                        this.student = response.data
+                        this.mode = 'view'
+                    }
+                )
             }
         }
     }

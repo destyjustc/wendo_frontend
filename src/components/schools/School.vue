@@ -47,7 +47,8 @@
                     }
                 }).then(
                     response => {
-                        console.log('create success! ', response)
+                        this.school = response.data
+                        this.mode = 'view'
                     }
                 )
             },
@@ -66,9 +67,9 @@
                 }).then(
                     response => {
                         this.school = response.data
+                        this.mode = 'view'
                     }
                 )
-                this.mode = 'view'
             }
         }
     }

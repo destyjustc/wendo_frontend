@@ -19,7 +19,7 @@ export const routes = [
         component: StudentList
     },
     {
-        path: '/student/:studentId',
+        path: '/student/school/:schoolId/:studentId',
         component: Student
     },
     {

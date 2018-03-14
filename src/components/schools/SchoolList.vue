@@ -26,7 +26,7 @@
         },
         methods: {
             navToSchool(id) {
-                this.$router.push({ path: '/school/' + id})
+                this.$router.push({path: '/school/' + id})
             }
         }
     }
