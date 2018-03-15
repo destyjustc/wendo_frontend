@@ -1,8 +1,8 @@
 import HelloWorld from '@/components/HelloWorld'
 import Student from '@/components/students/Student'
 import StudentList from '@/components/students/StudentList'
-import Teacher from '@/components/teachers/Teacher'
-import TeacherList from '@/components/teachers/TeacherList'
+import User from '@/components/users/User'
+import UserList from '@/components/users/UserList'
 import School from '@/components/schools/School'
 import SchoolList from '@/components/schools/SchoolList'
 import Course from '@/components/courses/course'
@@ -31,12 +31,12 @@ export const routes = [
         component: Course
     },
     {
-        path: '/teacherlist',
-        component: TeacherList
+        path: '/userlist',
+        component: UserList
     },
     {
-        path: '/teacher/:teacherId',
-        component: Teacher
+        path: '/user/:userId',
+        component: User
     },
     {
         path: '/schoollist',
