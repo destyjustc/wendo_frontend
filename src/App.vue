@@ -21,8 +21,8 @@
         <router-link to="/schoollist" activeClass="active">
           <cell title="Schools" @click.native="drawerVisibility = false"></cell>
         </router-link>
-        <router-link to="/classlist" activeClass="active">
-          <cell title="Classes" @click.native="drawerVisibility = false"></cell>
+        <router-link to="/courselist" activeClass="active">
+          <cell title="Courses" @click.native="drawerVisibility = false"></cell>
         </router-link>
       </group>
       <group title="showMode">
