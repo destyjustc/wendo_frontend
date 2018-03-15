@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { CreateStudentPage } from './create-student/create-student';
+import { StoreService } from '../../services/store';
 
 @Component({
   selector: 'page-home',
@@ -14,14 +15,19 @@ export class HomePage {
       'second student'
   ];
 
-  constructor(public navCtrl: NavController, private http: HttpClient) {
-      this.http.get('http://wendo-stage.herokuapp.com/student/')
-          .subscribe(data => {
-              console.log(data);
-              // this.students = [...data];
+  constructor(public navCtrl: NavController, private http: HttpClient, private store: StoreService) {
 
-          });
   }
+
+    ionViewWillEnter() {
+        this.http.get<Array<Object>>('/student/school/' + this.store.getSchoolId())
+            .subscribe(data => {
+                this.students = [...data];
+
+            }, error => {
+                console.error(error);
+            })
+    }
 
   goToCreateStudentPage() {
       this.navCtrl.push(CreateStudentPage);

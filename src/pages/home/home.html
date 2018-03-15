@@ -18,7 +18,7 @@
 <ion-content>
   <ion-item-group>
     <!--<ion-item-divider color="light">A</ion-item-divider>-->
-    <ion-item *ngFor="let student of students">{{student}}</ion-item>
+    <ion-item *ngFor="let student of students">{{student.firstname + student.lastname}}</ion-item>
     <!--<ion-item>Argentina</ion-item>-->
   </ion-item-group>
 </ion-content>
