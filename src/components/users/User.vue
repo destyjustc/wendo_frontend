@@ -24,6 +24,46 @@
         <button v-if="mode === 'create'" @click="createUser">Create User</button>
         <button v-if="mode === 'view'" @click="editUser">Edit User</button>
         <button v-if="mode === 'edit'" @click="saveUser">Save User</button>
+        <br>
+        <div v-if="mode !== 'create'">
+            <div v-if="role.id">
+                <h3>
+                    Role
+                </h3>
+                <span>Role Name: </span><span>{{role.role.name}}</span>
+                <span>Role Description: </span><span>{{role.role.description}}</span>
+                <h3>
+                    School
+                </h3>
+                <span>School Name: </span><span>{{role.school.name}}</span>
+                <span>School Description: </span><span>{{role.school.describe}}</span>
+            </div>
+            <div v-else>
+                <h3>
+                    Select A Role
+                </h3>
+                <div v-for="role in roles" @click="selectRole(role)">
+                    <span>Role Name: </span><span>{{role.name}}</span>
+                    <span>Role Description: </span><span>{{role.description}}</span>
+                </div>
+                <div>
+                    <span>Selected Role: </span>
+                    <span>{{selectedRole.name}}</span>
+                </div>
+                <h3>
+                    Select A School
+                </h3>
+                <div v-for="school in schools" @click="selectSchool(school)">
+                    <span>School Name: </span><span>{{school.name}}</span>
+                    <span>Role Description: </span><span>{{school.describe}}</span>
+                </div>
+                <div>
+                    <span>Selected School: </span>
+                    <span>{{selectedSchool.name}}</span>
+                </div>
+                <button @click="assignRole">Assign this role to user</button>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -36,12 +76,18 @@
                     .then(
                         response => {
                             this.user = response.data
+                            this.getUserRole()
                         })
             }
         },
         data() {
             return {
                 mode: 'view',
+                schools: [],
+                selectedSchool: {},
+                selectedRole: {},
+                roles: [],
+                role: {},
                 user: {
                     firstname: null,
                     lastname: null,
@@ -93,6 +139,53 @@
                     response => {
                         this.user = response.data
                         this.mode = 'view'
+                    }
+                )
+            },
+            getUserRole() {
+                this.$http.get('https://wendo-stage.herokuapp.com/user_role/' + this.$route.params.userId)
+                    .then(
+                        response => {
+                            this.role = response.data
+                            if (this.role.id === null) {
+                                this.getRoles()
+                                this.getSchools()
+                            }
+                        })
+            },
+            getRoles() {
+                this.$http.get('https://wendo-stage.herokuapp.com/role/')
+                    .then(
+                        response => {
+                            this.roles = response.data
+                        })
+            },
+            selectRole(role) {
+                this.selectedRole = role
+            },
+            getSchools() {
+                this.$http.get('https://wendo-stage.herokuapp.com/school').then(
+                    response => {
+                        this.schools = response.data
+                    })
+            },
+            selectSchool(school) {
+                this.selectedSchool = school
+            },
+            assignRole() {
+                console.log('aa ', this.selectedRole.name, this.selectedSchool.id)
+                const pl = {
+                    user_id: this.user.id,
+                    role_id: this.selectedRole.id,
+                    school_id: this.selectedSchool.id
+                }
+                this.$http.post('https://wendo-stage.herokuapp.com/user_role/', pl, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(
+                    response => {
+                        console.log(response)
                     }
                 )
             }
