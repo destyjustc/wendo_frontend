@@ -173,7 +173,6 @@
                 this.selectedSchool = school
             },
             assignRole() {
-                console.log('aa ', this.selectedRole.name, this.selectedSchool.id)
                 const pl = {
                     user_id: this.user.id,
                     role_id: this.selectedRole.id,

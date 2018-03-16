@@ -33,6 +33,16 @@
                 <span>Course Id: </span><span>{{student.course_id}}</span>
                 <span>User Id: </span><span>{{student.user_id}}</span>
             </div>
+            <button @click="getFeeRecords">Get Payment Records for Selected Student</button>
+            <div v-for="fee in feeRecords">
+                <span>Payment: </span><span>{{fee.payment}}</span>
+                <span>Course Id: </span><span>{{fee.course_id}}</span>
+                <span>User Id: </span><span>{{fee.user_id}}</span>
+            </div>
+            <br>
+            <br>
+            <input  v-model="fee">
+            <button @click="payFee">Pay Fee for Selected Student</button>
         </div>
     </div>
 </template>
@@ -57,6 +67,8 @@
                 students: [],
                 selectedStudent: {},
                 registeredStudents: [],
+                feeRecords: [],
+                fee: 0,
                 course: {
                     name: null,
                     description: null,
@@ -143,6 +155,29 @@
                 }).then(
                     response => {
                         this.getRegisteredStudents()
+                    }
+                )
+            },
+            getFeeRecords() {
+                this.$http.get('https://wendo-stage.herokuapp.com/payment/user/' + this.selectedStudent.id +
+                    '/course/' + this.$route.params.courseId).then(
+                    response => {
+                        this.feeRecords = response.data
+                    })
+            },
+            payFee() {
+                const pl = {
+                    user_id: this.selectedStudent.id,
+                    course_id: this.$route.params.courseId,
+                    payment: this.fee
+                }
+                this.$http.post('https://wendo-stage.herokuapp.com/payment/', pl, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(
+                    response => {
+                        this.getFeeRecords()
                     }
                 )
             }
