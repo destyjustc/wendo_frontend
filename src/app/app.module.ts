@@ -3,8 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
 
-import {AboutPage} from '../pages/about/about';
-import {ContactPage} from '../pages/contact/contact';
 import {HomePage} from '../pages/home/home';
 import {TabsPage} from '../pages/tabs/tabs';
 
@@ -18,6 +16,8 @@ import {HttpClientModule} from '@angular/common/http';
 
 import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+import {SchoolPage} from '../pages/school/school';
+import {CoursePage} from '../pages/course/course';
 
 export class ApiInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -29,9 +29,9 @@ export class ApiInterceptor implements HttpInterceptor {
 @NgModule({
     declarations: [
         MyApp,
-        AboutPage,
-        ContactPage,
         HomePage,
+        CoursePage,
+        SchoolPage,
         TabsPage,
         CreateStudentPage
     ],
@@ -43,9 +43,9 @@ export class ApiInterceptor implements HttpInterceptor {
     bootstrap: [IonicApp],
     entryComponents: [
         MyApp,
-        AboutPage,
-        ContactPage,
         HomePage,
+        CoursePage,
+        SchoolPage,
         TabsPage,
         CreateStudentPage
     ],
