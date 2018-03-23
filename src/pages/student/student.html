@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>学生列表</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goToCreateStudentPage()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-group>
+    <ion-item-divider color="light">A</ion-item-divider>
+    <button ion-item *ngFor="let student of students" (click)="goToEditStudentPage(student)">
+      {{student.firstname + student.lastname}}
+    </button>
+  </ion-item-group>
+</ion-content>

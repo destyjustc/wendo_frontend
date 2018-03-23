@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>编辑课程</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="removeCourse()">
+                <ion-icon name="trash"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+
+        <ion-item>
+            <ion-input type="text" placeholder="课程描述" [(ngModel)]="course.name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input type="password" placeholder="课程描述" [(ngModel)]="course.description"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input type="text" placeholder="课程费用" [(ngModel)]="course.fee"></ion-input>
+        </ion-item>
+
+        <div padding>
+            <button ion-button color="primary" block (click)="editCourse()">Edit Course</button>
+        </div>
+
+    </ion-list>
+</ion-content>

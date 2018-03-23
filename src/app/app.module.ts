@@ -3,10 +3,11 @@ import {BrowserModule} from '@angular/platform-browser';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
 
-import {HomePage} from '../pages/home/home';
+import {StudentPage} from '../pages/student/student';
 import {TabsPage} from '../pages/tabs/tabs';
 
-import {CreateStudentPage} from '../pages/home/create-student/create-student';
+import {CreateStudentPage} from '../pages/student/create-student/create-student';
+import {EditStudentPage} from '../pages/student/edit-student/edit-student';
 
 import {StoreService} from '../services/store';
 
@@ -18,6 +19,8 @@ import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS}
 import {Observable} from 'rxjs/Observable';
 import {SchoolPage} from '../pages/school/school';
 import {CoursePage} from '../pages/course/course';
+import {CreateCoursePage} from '../pages/course/create-course/create-course';
+import {EditCoursePage} from '../pages/course/edit-course/edit-course';
 
 export class ApiInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -29,11 +32,14 @@ export class ApiInterceptor implements HttpInterceptor {
 @NgModule({
     declarations: [
         MyApp,
-        HomePage,
+        StudentPage,
         CoursePage,
         SchoolPage,
         TabsPage,
-        CreateStudentPage
+        CreateStudentPage,
+        EditStudentPage,
+        CreateCoursePage,
+        EditCoursePage
     ],
     imports: [
         BrowserModule,
@@ -43,11 +49,14 @@ export class ApiInterceptor implements HttpInterceptor {
     bootstrap: [IonicApp],
     entryComponents: [
         MyApp,
-        HomePage,
+        StudentPage,
         CoursePage,
         SchoolPage,
         TabsPage,
-        CreateStudentPage
+        CreateStudentPage,
+        EditStudentPage,
+        CreateCoursePage,
+        EditCoursePage
     ],
     providers: [
         StatusBar,

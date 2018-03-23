@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>创建课程</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+
+        <ion-item>
+            <ion-input type="text" placeholder="课程描述" [(ngModel)]="course.name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input type="password" placeholder="课程描述" [(ngModel)]="course.description"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input type="text" placeholder="课程费用" [(ngModel)]="course.fee"></ion-input>
+        </ion-item>
+
+        <div padding>
+            <button ion-button color="primary" block (click)="createCourse()">创建课程</button>
+        </div>
+
+    </ion-list>
+</ion-content>
