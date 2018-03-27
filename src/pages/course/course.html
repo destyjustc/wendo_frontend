@@ -10,8 +10,21 @@
 </ion-header>
 
 <ion-content>
-    <ion-item-group>
-        <ion-item-divider color="light">A</ion-item-divider>
+    <ion-item-group *ngIf="selectedSchool === null">
+        <ion-item-divider color="light">选择想要查询课程的学校</ion-item-divider>
+        <button ion-item *ngFor="let school of schools" (click)="selectSchool(school)">
+            {{school.name}}
+        </button>
+    </ion-item-group>
+    <ion-item-group *ngIf="selectedSchool !== null">
+        <ion-row>
+            <ion-col>
+                <ion-item>{{selectedSchool.name}}有以下课程</ion-item>
+            </ion-col>
+            <ion-col>
+                <button ion-button full color="light" (click)="reselectSchool()">重新选择学校</button>
+            </ion-col>
+        </ion-row>
         <button ion-item *ngFor="let course of courses" (click)="goToEditCoursePage(course)">
             {{course.name}}
         </button>

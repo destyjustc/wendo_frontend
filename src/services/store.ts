@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 export class StoreService {
 
     schoolId: string;
+    schools: [{}];
 
     constructor(private http: HttpClient) {}
 
@@ -13,6 +14,7 @@ export class StoreService {
             .then(data => {
                 if (data && data.length > 0) {
                     this.setSchoolId(data[0]['id']);
+                    this.schools = data;
                 }
             }).catch(err => {
                 console.error(err);
@@ -25,6 +27,10 @@ export class StoreService {
 
     getSchoolId() {
         return this.schoolId;
+    }
+
+    getSchools() {
+        return this.schools;
     }
 
 }

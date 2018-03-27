@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NavController } from 'ionic-angular';
-import { StoreService } from '../../../services/store';
+import {NavController, NavParams} from 'ionic-angular';
 
 @Component({
     selector: 'page-create-course',
@@ -12,15 +11,17 @@ export class CreateCoursePage {
     course: Object = {
         name: '',
         description: '',
-        fee: ''
+        fee: '',
+        school_id: ''
     };
 
-    constructor(public navCtrl: NavController, private http: HttpClient, private store: StoreService) {
+    constructor(public navCtrl: NavController, private http: HttpClient, private navParams: NavParams) {
 
     }
 
     createCourse() {
-        this.http.post('/course/school/' + this.store.getSchoolId(), this.course)
+        this.course['school_id'] = this.navParams.get('schoolId');
+        this.http.post('/course/school/' + this.navParams.get('schoolId'), this.course)
             .subscribe(data => {
                 this.navCtrl.pop();
             }, error => {

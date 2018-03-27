@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NavController, NavParams } from 'ionic-angular';
-import { StoreService } from '../../../services/store';
 
 @Component({
     selector: 'page-edit-course',
@@ -11,12 +10,12 @@ export class EditCoursePage {
 
     course: Object = {};
 
-    constructor(public navCtrl: NavController, private http: HttpClient, private store: StoreService, private navParams: NavParams) {
+    constructor(public navCtrl: NavController, private http: HttpClient, private navParams: NavParams) {
 
     }
 
     ionViewWillEnter() {
-        this.http.get<Array<Object>>('/course/school/' + this.store.getSchoolId() + '/' + this.navParams.get('courseId'))
+        this.http.get<Array<Object>>('/course/school/' + this.navParams.get('schoolId') + '/' + this.navParams.get('courseId'))
             .subscribe(data => {
                 this.course = data;
             }, error => {
@@ -25,7 +24,7 @@ export class EditCoursePage {
     }
 
     editCourse() {
-        this.http.put('/course/school/' + this.store.getSchoolId() + '/' + this.navParams.get('courseId'), this.course)
+        this.http.put('/course/school/' + this.navParams.get('schoolId') + '/' + this.navParams.get('courseId'), this.course)
             .subscribe(data => {
                 this.navCtrl.pop();
             }, error => {
@@ -34,7 +33,7 @@ export class EditCoursePage {
     }
 
     removeCourse() {
-        this.http.delete('/course/school/' + this.store.getSchoolId() + '/' + this.navParams.get('courseId'))
+        this.http.delete('/course/school/' + this.navParams.get('schoolId') + '/' + this.navParams.get('courseId'))
             .subscribe(data => {
                 this.navCtrl.pop();
             }, error => {
