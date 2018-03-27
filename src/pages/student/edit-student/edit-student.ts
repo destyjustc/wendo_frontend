@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NavController, NavParams } from 'ionic-angular';
-import { StoreService } from '../../../services/store';
 
 @Component({
     selector: 'page-edit-student',
@@ -11,12 +10,12 @@ export class EditStudentPage {
 
     student: Object = {};
 
-    constructor(public navCtrl: NavController, private http: HttpClient, private store: StoreService, private navParams: NavParams) {
+    constructor(public navCtrl: NavController, private http: HttpClient, private navParams: NavParams) {
 
     }
 
     ionViewWillEnter() {
-        this.http.get<Array<Object>>('/student/school/' + this.store.getSchoolId() + '/' + this.navParams.get('studentId'))
+        this.http.get<Array<Object>>('/student/school/' + this.navParams.get('schoolId') + '/' + this.navParams.get('studentId'))
             .subscribe(data => {
                 this.student = data;
             }, error => {
@@ -25,7 +24,7 @@ export class EditStudentPage {
     }
 
     editStudent() {
-        this.http.put('/student/school/' + this.store.getSchoolId() + '/' + this.navParams.get('studentId'), this.student)
+        this.http.put('/student/school/' + this.navParams.get('schoolId') + '/' + this.navParams.get('studentId'), this.student)
             .subscribe(data => {
                 this.navCtrl.pop();
             }, error => {

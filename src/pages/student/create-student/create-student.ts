@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NavController } from 'ionic-angular';
-import { StoreService } from '../../../services/store';
+import {NavController, NavParams} from 'ionic-angular';
 
 @Component({
     selector: 'page-create-student',
@@ -13,15 +12,17 @@ export class CreateStudentPage {
         username: '',
         password: '',
         firstname: '',
-        lastname: ''
+        lastname: '',
+        email: '',
+        phone: ''
     };
 
-    constructor(public navCtrl: NavController, private http: HttpClient, private store: StoreService) {
+    constructor(public navCtrl: NavController, private http: HttpClient, private navParams: NavParams) {
 
     }
 
     createStudent() {
-        this.http.post('/student/school/' + this.store.getSchoolId(), this.student)
+        this.http.post('/student/school/' + this.navParams.get('schoolId'), this.student)
             .subscribe(data => {
                 this.navCtrl.pop();
             }, error => {

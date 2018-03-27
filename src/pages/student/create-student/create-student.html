@@ -8,19 +8,33 @@
     <ion-list>
 
         <ion-item>
-            <ion-input type="text" placeholder="Username" [(ngModel)]="student.username"></ion-input>
+            <ion-label floating>用户名</ion-label>
+            <ion-input type="text" [(ngModel)]="student.username"></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-input type="password" placeholder="Password" [(ngModel)]="student.password"></ion-input>
+            <ion-label floating>密码</ion-label>
+            <ion-input type="password" [(ngModel)]="student.password"></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-input type="text" placeholder="Firstname" [(ngModel)]="student.firstname"></ion-input>
+            <ion-label floating>名字</ion-label>
+            <ion-input type="text" [(ngModel)]="student.firstname"></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-input type="text" placeholder="Lastname" [(ngModel)]="student.lastname"></ion-input>
+            <ion-label floating>姓氏</ion-label>
+            <ion-input type="text" [(ngModel)]="student.lastname"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>邮箱</ion-label>
+            <ion-input type="email" [(ngModel)]="student.email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>电话</ion-label>
+            <ion-input type="tel" [(ngModel)]="student.phone"></ion-input>
         </ion-item>
 
         <div padding>
