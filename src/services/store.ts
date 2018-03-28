@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 export class StoreService {
 
     schoolId: string;
-    schools: [{}];
+    schools: Object[];
 
     constructor(private http: HttpClient) {}
 
