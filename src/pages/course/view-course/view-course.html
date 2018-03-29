@@ -46,7 +46,7 @@
         </ion-item-divider>
         <button ion-item *ngFor="let student of students" (click)="registerStudent(student)">
             <h2 float-left>
-                {{student.lastname}} {{student.firstname}} {{student.registered}}
+                {{student.lastname}} {{student.firstname}}
             </h2>
             <p float-right [style.visibility]="student.registered ? 'visible' : 'hidden'">
                 已注册
