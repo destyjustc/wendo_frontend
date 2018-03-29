@@ -30,7 +30,7 @@ export class ViewCoursePage {
         this.navCtrl.push(EditCoursePage, {schoolId: this.navParams.get('schoolId'), courseId: this.navParams.get('courseId')});
     }
 
-    displayStudents() {
+    getStudents() {
         this.showStudents = true;
         this.http.get<Array<Object>>('/user')
             .subscribe((data: Object[]) => {
@@ -61,7 +61,7 @@ export class ViewCoursePage {
         };
         this.http.post('/course_user/', payload)
             .subscribe(data => {
-                this.displayStudents();
+                this.getStudents();
             }, error => {
                 console.error(error);
             })

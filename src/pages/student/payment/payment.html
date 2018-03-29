@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>学生缴费信息</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label floating>输入缴费金额</ion-label>
+            <ion-input type="number" [(ngModel)]="amount"></ion-input>
+        </ion-item>
+        <div padding>
+            <button ion-button color="primary" block (click)="payFee()">确认付费</button>
+        </div>
+    </ion-list>
+    <ion-list >
+        <ion-item ion-item *ngFor="let pay of payments">
+            金额：{{pay.payment}}, 日期：{{pay.updated_on | date: 'yyyy-MM-dd HH:mm a'}}
+        </ion-item>
+    </ion-list>
+</ion-content>

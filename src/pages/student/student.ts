@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {HttpClient} from '@angular/common/http';
 import {CreateStudentPage} from './create-student/create-student';
-import {EditStudentPage} from './edit-student/edit-student';
 import {StoreService} from '../../services/store';
+import {ViewStudentPage} from './view-student/view-student';
 
 @Component({
     selector: 'page-student',
@@ -30,8 +30,8 @@ export class StudentPage {
         this.navCtrl.push(CreateStudentPage, {schoolId: this.selectedSchool['id']});
     }
 
-    goToEditStudentPage(student) {
-        this.navCtrl.push(EditStudentPage, {schoolId: this.selectedSchool['id'], studentId: student.id});
+    goToViewStudentPage(student) {
+        this.navCtrl.push(ViewStudentPage, {schoolId: this.selectedSchool['id'], studentId: student.id});
     }
 
     selectSchool(school) {
