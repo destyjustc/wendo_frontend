@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>课程信息</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="goToEditCoursePage()">
+                <ion-icon name="brush"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list *ngIf="!showStudents">
+
+        <ion-item>
+            <h2>课程名称</h2>
+            <p>{{course.name}}</p>
+        </ion-item>
+
+        <ion-item>
+            <h2>课程描述</h2>
+            <p>{{course.description}}</p>
+        </ion-item>
+
+        <ion-item>
+            <h2>课程费用</h2>
+            <p>{{course.fee}}</p>
+        </ion-item>
+
+        <div padding>
+            <button ion-button color="primary" block (click)="displayStudents()">注册学生</button>
+        </div>
+
+    </ion-list>
+
+    <ion-list *ngIf="showStudents">
+        <ion-item-divider>
+            <p float-left>
+                点击想要注册的学生
+            </p>
+            <ion-buttons float-right>
+                <button ion-button float-right (click)="displayCourseInfo()">
+                    返回课程信息
+                </button>
+            </ion-buttons>
+        </ion-item-divider>
+        <button ion-item *ngFor="let student of students" (click)="registerStudent(student)">
+            <h2 float-left>
+                {{student.lastname}} {{student.firstname}} {{student.registered}}
+            </h2>
+            <p float-right [style.visibility]="student.registered ? 'visible' : 'hidden'">
+                已注册
+            </p>
+        </button>
+    </ion-list>
+</ion-content>
