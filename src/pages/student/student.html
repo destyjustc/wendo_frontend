@@ -23,7 +23,11 @@
           <ion-item>{{selectedSchool.name}}有以下学生</ion-item>
         </ion-col>
         <ion-col>
-          <button ion-button full color="light" (click)="reselectSchool()">重新选择学校</button>
+          <ion-buttons end>
+            <button ion-button (click)="reselectSchool()">
+              重新选择学校
+            </button>
+          </ion-buttons>
         </ion-col>
       </ion-row>
       <button ion-item *ngFor="let student of students" (click)="goToEditStudentPage(student)">
