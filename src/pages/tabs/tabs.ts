@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { StudentPage } from '../student/student';
-import { SchoolPage } from '../school/school';
+import { DashboardPage } from '../dashboard/dashboard';
 import { CoursePage } from '../course/course';
 
 @Component({
@@ -9,7 +9,7 @@ import { CoursePage } from '../course/course';
 })
 export class TabsPage {
 
-  tab1Root = SchoolPage;
+  tab1Root = DashboardPage;
   tab2Root = CoursePage;
   tab3Root = StudentPage;
 

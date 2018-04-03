@@ -17,7 +17,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {SchoolPage} from '../pages/school/school';
+import {DashboardPage} from '../pages/dashboard/dashboard';
 import {CoursePage} from '../pages/course/course';
 import {CreateCoursePage} from '../pages/course/create-course/create-course';
 import {EditCoursePage} from '../pages/course/edit-course/edit-course';
@@ -37,7 +37,7 @@ export class ApiInterceptor implements HttpInterceptor {
         MyApp,
         StudentPage,
         CoursePage,
-        SchoolPage,
+        DashboardPage,
         TabsPage,
         CreateStudentPage,
         EditStudentPage,
@@ -50,14 +50,17 @@ export class ApiInterceptor implements HttpInterceptor {
     imports: [
         BrowserModule,
         HttpClientModule,
-        IonicModule.forRoot(MyApp)
+        IonicModule.forRoot(MyApp, {
+            backButtonText: '返回',
+            backButtonIcon: null
+        })
     ],
     bootstrap: [IonicApp],
     entryComponents: [
         MyApp,
         StudentPage,
         CoursePage,
-        SchoolPage,
+        DashboardPage,
         TabsPage,
         CreateStudentPage,
         EditStudentPage,

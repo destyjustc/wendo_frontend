@@ -1,16 +1,23 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>课程信息</ion-title>
+        <ion-segment [(ngModel)]="currentSegment">
+            <ion-segment-button value="courseInfo">
+                课程信息
+            </ion-segment-button>
+            <ion-segment-button value="studentRegister">
+                注册学生
+            </ion-segment-button>
+        </ion-segment>
         <ion-buttons end>
             <button ion-button icon-only (click)="goToEditCoursePage()">
-                <ion-icon name="brush"></ion-icon>
+                编辑课程
             </button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <ion-list *ngIf="!showStudents">
+    <ion-list *ngIf="currentSegment === 'courseInfo'">
 
         <ion-item>
             <h2>课程名称</h2>
@@ -27,22 +34,13 @@
             <p>{{course.fee}}</p>
         </ion-item>
 
-        <div padding>
-            <button ion-button color="primary" block (click)="getStudents()">注册学生</button>
-        </div>
-
     </ion-list>
 
-    <ion-list *ngIf="showStudents">
+    <ion-list *ngIf="currentSegment === 'studentRegister'">
         <ion-item-divider>
             <p float-left>
                 点击想要注册的学生
             </p>
-            <ion-buttons float-right>
-                <button ion-button float-right (click)="displayCourseInfo()">
-                    返回课程信息
-                </button>
-            </ion-buttons>
         </ion-item-divider>
         <button ion-item *ngFor="let student of students" (click)="registerStudent(student)">
             <h2 float-left>

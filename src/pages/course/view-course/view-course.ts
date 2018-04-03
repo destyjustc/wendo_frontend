@@ -10,7 +10,7 @@ import {EditCoursePage} from '../edit-course/edit-course';
 export class ViewCoursePage {
 
     course: Object = {};
-    showStudents: boolean = false;
+    currentSegment = 'courseInfo'
     students: any;
 
     constructor(public navCtrl: NavController, private http: HttpClient, private navParams: NavParams) {
@@ -24,6 +24,7 @@ export class ViewCoursePage {
             }, error => {
                 console.error(error);
             })
+        this.getStudents();
     }
 
     goToEditCoursePage() {
@@ -31,7 +32,6 @@ export class ViewCoursePage {
     }
 
     getStudents() {
-        this.showStudents = true;
         this.http.get<Array<Object>>('/user')
             .subscribe((data: Object[]) => {
                 this.http.get<Array<Object>>('/course_user/course/' + this.navParams.get('courseId'))
@@ -48,10 +48,6 @@ export class ViewCoursePage {
             }, error => {
                 console.error(error);
             })
-    }
-
-    displayCourseInfo() {
-        this.showStudents = false;
     }
 
     registerStudent(student) {

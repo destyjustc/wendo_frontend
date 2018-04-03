@@ -14,7 +14,7 @@ export class StoreService {
             .then(data => {
                 if (data && data.length > 0) {
                     this.setSchoolId(data[0]['id']);
-                    this.schools = data;
+                    // this.schools = data;
                 }
             }).catch(err => {
                 console.error(err);

@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>学生列表</ion-title>
-    <ion-buttons *ngIf="selectedSchool !== null" end>
-      <button ion-button icon-only (click)="goToCreateStudentPage()">
-        <ion-icon name="add"></ion-icon>
+    <ion-buttons end>
+      <button ion-button (click)="goToCreateStudentPage()">
+        创建学生
       </button>
     </ion-buttons>
   </ion-toolbar>
@@ -11,26 +11,13 @@
 
 <ion-content>
   <ion-item-group>
-    <ion-item-group *ngIf="selectedSchool === null">
-      <ion-item-divider>选择想要查询学生的学校</ion-item-divider>
-      <button ion-item *ngFor="let school of schools" (click)="selectSchool(school)">
-        {{school.name}}
-      </button>
-    </ion-item-group>
-    <ion-item-group *ngIf="selectedSchool !== null">
-      <ion-item-divider>
-        <p float-left>
-          {{selectedSchool.name}}有以下学生
-        </p>
-        <ion-buttons float-right>
-          <button ion-button (click)="reselectSchool()">
-            重新选择学校
-          </button>
-        </ion-buttons>
-      </ion-item-divider>
+
       <button ion-item *ngFor="let student of students" (click)="goToViewStudentPage(student)">
-        {{student.firstname + student.lastname}}
+        <ion-avatar item-start>
+          <img [src]="'https://ui-avatars.com/api/?name='+student.firstname+'+'+student.lastname">
+        </ion-avatar>
+        <h2>{{student.firstname + student.lastname}}</h2>
+        <p>{{student.phone}}</p>
       </button>
-    </ion-item-group>
   </ion-item-group>
 </ion-content>

@@ -12,31 +12,14 @@ import {ViewCoursePage} from './view-course/view-course';
 export class CoursePage {
 
     courses: any = [];
-    schools: any = [];
-    selectedSchool: any = null;
 
     constructor(public navCtrl: NavController, private http: HttpClient, private store: StoreService) {
 
     }
 
     ionViewWillEnter() {
-        this.schools = this.store.getSchools();
-        if(this.selectedSchool) {
-            this.selectSchool(this.selectedSchool);
-        }
-    }
-
-    goToCreateCoursePage() {
-        this.navCtrl.push(CreateCoursePage, {schoolId: this.selectedSchool['id']});
-    }
-
-    goToViewCoursePage(course) {
-        this.navCtrl.push(ViewCoursePage, {schoolId: this.selectedSchool['id'], courseId: course.id});
-    }
-
-    selectSchool(school) {
-        this.selectedSchool = school;
-        this.http.get<Array<Object>>('/course/school/' + this.selectedSchool['id'])
+        let schoolId = this.store.getSchoolId();
+        this.http.get<Array<Object>>('/course/school/' + schoolId)
             .subscribe(data => {
                 this.courses = [...data];
 
@@ -45,7 +28,13 @@ export class CoursePage {
             })
     }
 
-    reselectSchool() {
-        this.selectedSchool = null;
+    goToCreateCoursePage() {
+        let schoolId = this.store.getSchoolId();
+        this.navCtrl.push(CreateCoursePage, {schoolId: schoolId});
+    }
+
+    goToViewCoursePage(course) {
+        let schoolId = this.store.getSchoolId();
+        this.navCtrl.push(ViewCoursePage, {schoolId: schoolId, courseId: course.id});
     }
 }

@@ -10,7 +10,7 @@ export class CreateStudentPage {
 
     student: Object = {
         username: '',
-        password: '',
+        password: 'user@123',
         firstname: '',
         lastname: '',
         email: '',

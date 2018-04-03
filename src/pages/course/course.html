@@ -1,35 +1,22 @@
 <ion-header>
     <ion-toolbar>
         <ion-title>课程列表</ion-title>
-        <ion-buttons *ngIf="selectedSchool !== null" end>
-            <button ion-button icon-only (click)="goToCreateCoursePage()">
-                <ion-icon name="add"></ion-icon>
+        <ion-buttons end>
+            <button ion-button (click)="goToCreateCoursePage()">
+                创建课程
             </button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-item-group *ngIf="selectedSchool === null">
-        <ion-item-divider>选择想要查询课程的学校</ion-item-divider>
-        <button ion-item *ngFor="let school of schools" (click)="selectSchool(school)">
-            {{school.name}}
-        </button>
-    </ion-item-group>
-    <ion-item-group *ngIf="selectedSchool !== null">
-        <ion-item-divider>
-            <p float-left>
-                {{selectedSchool.name}}有以下课程
-            </p>
-            <ion-buttons float-right>
-                <button ion-button (click)="reselectSchool()">
-                    重新选择学校
-                </button>
-            </ion-buttons>
-        </ion-item-divider>
-        <button ion-item *ngFor="let course of courses" (click)="goToViewCoursePage(course)">
+    <ion-card *ngFor="let course of courses" (click)="goToViewCoursePage(course)">
+        <ion-card-header>
             {{course.name}}
-        </button>
-    </ion-item-group>
+        </ion-card-header>
+        <ion-card-content>
+            {{course.description}}
+        </ion-card-content>
+    </ion-card>
 </ion-content>
 

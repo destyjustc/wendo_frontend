@@ -11,7 +11,7 @@ import {PaymentPage} from '../payment/payment';
 export class ViewStudentPage {
 
     student: Object = {};
-    showCourses: boolean = false;
+    currentSegment = 'studentInfo'
     courses: any;
 
     constructor(public navCtrl: NavController, private http: HttpClient, private navParams: NavParams) {
@@ -25,14 +25,6 @@ export class ViewStudentPage {
             }, error => {
                 console.error(error);
             })
-    }
-
-    goToEditStudentPage() {
-        this.navCtrl.push(EditStudentPage, {schoolId: this.navParams.get('schoolId'), studentId: this.navParams.get('studentId')});
-    }
-
-    getCourses() {
-        this.showCourses = true;
         this.http.get<Array<Object>>('/course/school/' + this.navParams.get('schoolId'))
             .subscribe((data: Object[]) => {
                 this.courses = data;
@@ -41,8 +33,8 @@ export class ViewStudentPage {
             })
     }
 
-    displayStudentInfo() {
-        this.showCourses = false;
+    goToEditStudentPage() {
+        this.navCtrl.push(EditStudentPage, {schoolId: this.navParams.get('schoolId'), studentId: this.navParams.get('studentId')});
     }
 
     goToPaymentPage(course) {

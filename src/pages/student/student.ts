@@ -12,31 +12,14 @@ import {ViewStudentPage} from './view-student/view-student';
 export class StudentPage {
 
     students: any = [];
-    schools: any = [];
-    selectedSchool: any = null;
 
     constructor(public navCtrl: NavController, private http: HttpClient, private store: StoreService) {
 
     }
 
     ionViewWillEnter() {
-        this.schools = this.store.getSchools();
-        if(this.selectedSchool) {
-            this.selectSchool(this.selectedSchool);
-        }
-    }
-
-    goToCreateStudentPage() {
-        this.navCtrl.push(CreateStudentPage, {schoolId: this.selectedSchool['id']});
-    }
-
-    goToViewStudentPage(student) {
-        this.navCtrl.push(ViewStudentPage, {schoolId: this.selectedSchool['id'], studentId: student.id});
-    }
-
-    selectSchool(school) {
-        this.selectedSchool = school;
-        this.http.get<Array<Object>>('/student/school/' + this.selectedSchool['id'])
+        let schoolId = this.store.getSchoolId();
+        this.http.get<Array<Object>>('/student/school/' + schoolId)
             .subscribe(data => {
                 this.students = [...data];
 
@@ -45,7 +28,13 @@ export class StudentPage {
             })
     }
 
-    reselectSchool() {
-        this.selectedSchool = null;
+    goToCreateStudentPage() {
+        let schoolId = this.store.getSchoolId();
+        this.navCtrl.push(CreateStudentPage, {schoolId: schoolId});
+    }
+
+    goToViewStudentPage(student) {
+        let schoolId = this.store.getSchoolId();
+        this.navCtrl.push(ViewStudentPage, {schoolId: schoolId, studentId: student.id});
     }
 }
