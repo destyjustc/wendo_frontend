@@ -50,8 +50,10 @@
         <ion-item-divider>
             点击想要缴费的课程
         </ion-item-divider>
-        <button ion-item *ngFor="let course of courses" (click)="goToPaymentPage(course)">
-            {{course.name}}
-        </button>
+        <ng-container *ngFor="let course of courses">
+            <button ion-item  (click)="goToPaymentPage(course)" *ngIf="course.registered">
+                {{course.name}}
+            </button>
+        </ng-container>
     </ion-list>
 </ion-content>

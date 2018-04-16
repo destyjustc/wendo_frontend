@@ -27,7 +27,19 @@ export class ViewStudentPage {
             })
         this.http.get<Array<Object>>('/course/school/' + this.navParams.get('schoolId'))
             .subscribe((data: Object[]) => {
-                this.courses = data;
+                this.http.get<Array<Object>>('/course_user/school/' + this.navParams.get('schoolId') + '/user/' + this.navParams.get('studentId'))
+                    .subscribe((data2: Object[]) => {
+                        console.log(data2);
+                        for (let i = 0; i < data2.length; i++) {
+                            for (let j = 0; j < data.length; j++) {
+                                if (data2[i]['course_id'] === data[j]['id']) {
+                                    data[j]['registered'] = true;
+                                    data[j]['course_user_id'] = data2[i]['id']
+                                }
+                            }
+                        }
+                        this.courses = data;
+                    });
             }, error => {
                 console.error(error);
             })

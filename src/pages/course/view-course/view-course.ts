@@ -32,7 +32,7 @@ export class ViewCoursePage {
     }
 
     getStudents() {
-        this.http.get<Array<Object>>('/user')
+        this.http.get<Array<Object>>('/student/school/' + this.navParams.get('schoolId'))
             .subscribe((data: Object[]) => {
                 this.http.get<Array<Object>>('/course_user/course/' + this.navParams.get('courseId'))
                     .subscribe((data2: Object[]) => {
@@ -40,26 +40,37 @@ export class ViewCoursePage {
                             for (let j = 0; j < data.length; j++) {
                                 if (data2[i]['user_id'] === data[j]['id']) {
                                     data[j]['registered'] = true;
+                                    data[j]['course_user_id'] = data2[i]['id']
                                 }
                             }
                         }
                         this.students = data;
-                    })
+                    });
             }, error => {
                 console.error(error);
             })
     }
 
     registerStudent(student) {
-        let payload = {
-            user_id: student.id,
-            course_id: this.navParams.get('courseId')
-        };
-        this.http.post('/course_user/', payload)
-            .subscribe(data => {
-                this.getStudents();
-            }, error => {
-                console.error(error);
-            })
+        if (!!student.registered) {
+            console.log(student);
+            this.http.delete('/course_user/course_user/' + student.course_user_id)
+                .subscribe(() => {
+                    this.getStudents();
+                }, error => {
+                    console.error(error);
+                })
+        } else {
+            let payload = {
+                user_id: student.id,
+                course_id: this.navParams.get('courseId')
+            };
+            this.http.post('/course_user/', payload)
+                .subscribe(() => {
+                    this.getStudents();
+                }, error => {
+                    console.error(error);
+                })
+        }
     }
 }
