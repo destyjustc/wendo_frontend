@@ -25,12 +25,23 @@ import {ViewCoursePage} from '../pages/course/view-course/view-course';
 import {ViewStudentPage} from '../pages/student/view-student/view-student';
 import {PaymentPage} from '../pages/student/payment/payment';
 
-import { StudentRelationPage } from '../pages/student-relation/student-relation';
+import {StudentRelationPage} from '../pages/student-relation/student-relation';
 import {LoginPage} from '../pages/login/login'
 
 export class ApiInterceptor implements HttpInterceptor {
+    constructor(public store: StoreService) {}
+
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const apiReq = req.clone({url: `http://wendo-stage.herokuapp.com${req.url}`});
+        if (this.store.isAuth) {
+            let authToken = localStorage.getItem('authToken');
+            const tokenReq = apiReq.clone({
+                setHeaders: {
+                    Authorization: `JWT ${authToken}`
+                }
+            });
+            return next.handle(tokenReq);
+        }
         return next.handle(apiReq);
     }
 }
@@ -91,6 +102,7 @@ export class ApiInterceptor implements HttpInterceptor {
         {
             provide: HTTP_INTERCEPTORS,
             useClass: ApiInterceptor,
+            deps: [StoreService],
             multi: true,
         }
     ]

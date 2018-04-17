@@ -20,7 +20,6 @@ export class LoginPage {
             username: this.username,
             password: this.password
         }).subscribe(data => {
-            console.log(data);
             this.store.setConfigAfterLogin(data['access_token']).then(() => {
                 this.navCtrl.push(TabsPage);
             });

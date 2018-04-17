@@ -7,22 +7,11 @@ export class StoreService {
 
     isAuth: boolean = false;
     schoolId: string;
-    // schools: Object[];
+    userId: string;
 
     constructor(private http: HttpClient) {}
 
     public load(): Promise<void> {
-        // let schoolPromise = this.http.get<Array<Object>>('/school/').toPromise();
-        // let loginPromise = this.http.post<Object>('/auth', {username: '6', password: '6'}).toPromise();
-        // return Promise.all([schoolPromise, loginPromise])
-        //     .then(data => {
-        //         if (data && data.length > 0) {
-        //             this.setSchoolId(data[0][0]['id']);
-        //         }
-        //         // console.log(data);
-        //     }).catch(err => {
-        //         console.error(err);
-        //     });
         if (!!localStorage.getItem('authToken')) {
             let authToken = localStorage.getItem('authToken');
             let httpOptions = {
@@ -35,6 +24,7 @@ export class StoreService {
             return authPromise.then(data => {
                 this.isAuth = true;
                 this.setSchoolId(data['school_id']);
+                this.setUserId(data['id']);
             }).catch(error => {
                 console.error(error);
                 localStorage.removeItem('authToken');
@@ -44,7 +34,6 @@ export class StoreService {
     }
 
     public setConfigAfterLogin(authToken): Promise<void> {
-        localStorage.setItem('authToken', authToken);
         let httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type':  'application/json',
@@ -55,6 +44,8 @@ export class StoreService {
         return authPromise.then(data => {
             this.isAuth = true;
             this.setSchoolId(data['school_id']);
+            this.setUserId(data['id']);
+            localStorage.setItem('authToken', authToken);
         }).catch(error => {
             console.error(error);
         });
@@ -68,8 +59,12 @@ export class StoreService {
         return this.schoolId;
     }
 
-    // getSchools() {
-    //     return this.schools;
-    // }
+    setUserId(userId) {
+        this.userId = userId;
+    }
+
+    getUserId() {
+        return this.userId;
+    }
 
 }
