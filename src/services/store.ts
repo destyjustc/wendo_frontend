@@ -7,6 +7,7 @@ export class StoreService {
 
     isAuth: boolean = false;
     schoolId: string;
+    userId: string;
     // schools: Object[];
 
     constructor(private http: HttpClient) {}
@@ -35,6 +36,7 @@ export class StoreService {
             return authPromise.then(data => {
                 this.isAuth = true;
                 this.setSchoolId(data['school_id']);
+                this.setUserId(data['id']);
             }).catch(error => {
                 console.error(error);
                 localStorage.removeItem('authToken');
@@ -55,6 +57,7 @@ export class StoreService {
         return authPromise.then(data => {
             this.isAuth = true;
             this.setSchoolId(data['school_id']);
+            this.setUserId(data['id']);
         }).catch(error => {
             console.error(error);
         });
@@ -64,8 +67,16 @@ export class StoreService {
         this.schoolId = schoolId;
     }
 
+    setUserId(userId) {
+        this.userId = userId;
+    }
+
     getSchoolId() {
         return this.schoolId;
+    }
+
+    getUserId() {
+        return this.userId;
     }
 
     // getSchools() {

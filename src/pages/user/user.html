@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>个人设置</ion-title>
+        <ion-buttons end>
+            <button ion-button>
+                修改个人信息
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+
+        <ion-item>
+            <h2>用户名</h2>
+            <p>{{user.username}}</p>
+        </ion-item>
+
+        <ion-item>
+            <h2>名字</h2>
+            <p>{{user.firstname}}</p>
+        </ion-item>
+
+        <ion-item>
+            <h2>姓氏</h2>
+            <p>{{user.lastname}}</p>
+        </ion-item>
+
+        <ion-item>
+            <h2>邮箱</h2>
+            <p>{{user.email}}</p>
+        </ion-item>
+
+        <ion-item>
+            <h2>电话</h2>
+            <p>{{user.phone}}</p>
+        </ion-item>
+
+        <ion-item>
+            <h2>密码</h2>
+            <p>{{user.password}}</p>
+        </ion-item>
+
+    </ion-list>
+</ion-content>

@@ -17,7 +17,6 @@ import {HttpClientModule} from '@angular/common/http';
 
 import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {DashboardPage} from '../pages/dashboard/dashboard';
 import {CoursePage} from '../pages/course/course';
 import {CreateCoursePage} from '../pages/course/create-course/create-course';
 import {EditCoursePage} from '../pages/course/edit-course/edit-course';
@@ -27,6 +26,7 @@ import {PaymentPage} from '../pages/student/payment/payment';
 
 import { StudentRelationPage } from '../pages/student-relation/student-relation';
 import {LoginPage} from '../pages/login/login'
+import {UserPage} from '../pages/user/user';
 
 export class ApiInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -40,7 +40,6 @@ export class ApiInterceptor implements HttpInterceptor {
         MyApp,
         StudentPage,
         CoursePage,
-        DashboardPage,
         TabsPage,
         CreateStudentPage,
         EditStudentPage,
@@ -50,7 +49,8 @@ export class ApiInterceptor implements HttpInterceptor {
         ViewStudentPage,
         PaymentPage,
         StudentRelationPage,
-        LoginPage
+        LoginPage,
+        UserPage
     ],
     imports: [
         BrowserModule,
@@ -65,7 +65,6 @@ export class ApiInterceptor implements HttpInterceptor {
         MyApp,
         StudentPage,
         CoursePage,
-        DashboardPage,
         TabsPage,
         CreateStudentPage,
         EditStudentPage,
@@ -75,7 +74,8 @@ export class ApiInterceptor implements HttpInterceptor {
         ViewStudentPage,
         PaymentPage,
         StudentRelationPage,
-        LoginPage
+        LoginPage,
+        UserPage
     ],
     providers: [
         StatusBar,
