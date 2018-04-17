@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
+import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class StoreService {
@@ -8,32 +9,24 @@ export class StoreService {
     isAuth: boolean = false;
     schoolId: string;
     userId: string;
+    logoutSubject: Subject<any> = new Subject();
 
     constructor(private http: HttpClient) {}
 
     public load(): Promise<void> {
         if (!!localStorage.getItem('authToken')) {
             let authToken = localStorage.getItem('authToken');
-            let httpOptions = {
-                headers: new HttpHeaders({
-                    'Content-Type':  'application/json',
-                    'Authorization': 'JWT ' + authToken
-                })
-            };
-            let authPromise = this.http.get<Object>('/whoami/', httpOptions).toPromise();
-            return authPromise.then(data => {
-                this.isAuth = true;
-                this.setSchoolId(data['school_id']);
-                this.setUserId(data['id']);
-            }).catch(error => {
-                console.error(error);
-                localStorage.removeItem('authToken');
-            });
+            return this.setConfig(authToken);
         }
         return Promise.resolve();
     }
 
     public setConfigAfterLogin(authToken): Promise<void> {
+        return this.setConfig(authToken);
+    }
+
+    setConfig(authToken) {
+        localStorage.removeItem('authToken');
         let httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type':  'application/json',
@@ -46,9 +39,15 @@ export class StoreService {
             this.setSchoolId(data['school_id']);
             this.setUserId(data['id']);
             localStorage.setItem('authToken', authToken);
-        }).catch(error => {
-            console.error(error);
+        }).catch(() => {
+            // console.error(error);
         });
+    }
+
+    logout() {
+        this.isAuth = false;
+        this.logoutSubject.next('logout');
+        // return Promise.resolve();
     }
 
     setSchoolId(schoolId) {

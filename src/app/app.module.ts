@@ -1,6 +1,6 @@
-import {NgModule, ErrorHandler, APP_INITIALIZER} from '@angular/core';
+import {NgModule, ErrorHandler, APP_INITIALIZER, Injectable} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
+import {IonicApp, IonicModule, IonicErrorHandler, NavController} from 'ionic-angular';
 import {MyApp} from './app.component';
 
 import {StudentPage} from '../pages/student/student';
@@ -15,8 +15,9 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {HttpClientModule} from '@angular/common/http';
 
-import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/do';
 import {CoursePage} from '../pages/course/course';
 import {CreateCoursePage} from '../pages/course/create-course/create-course';
 import {EditCoursePage} from '../pages/course/edit-course/edit-course';
@@ -29,6 +30,7 @@ import {LoginPage} from '../pages/login/login'
 import {UserPage} from '../pages/user/user';
 import {EditUserPage} from '../pages/user/edit-user/edit-user';
 
+@Injectable()
 export class ApiInterceptor implements HttpInterceptor {
     constructor(public store: StoreService) {}
 
@@ -41,7 +43,18 @@ export class ApiInterceptor implements HttpInterceptor {
                     Authorization: `JWT ${authToken}`
                 }
             });
-            return next.handle(tokenReq);
+            // return next.handle(tokenReq);
+            return next.handle(tokenReq).do((event: HttpEvent<any>) => {
+                if (event instanceof HttpResponse) {
+                    // do stuff with response if you want
+                }
+            }, (err: any) => {
+                if (err instanceof HttpErrorResponse) {
+                    if (err.status === 401) {
+                        this.store.logout();
+                    }
+                }
+            });
         }
         return next.handle(apiReq);
     }
@@ -105,7 +118,7 @@ export class ApiInterceptor implements HttpInterceptor {
         {
             provide: HTTP_INTERCEPTORS,
             useClass: ApiInterceptor,
-            deps: [StoreService],
+            // deps: [StoreService, NavController],
             multi: true,
         }
     ]

@@ -22,7 +22,6 @@ export class StudentPage {
         this.http.get<Array<Object>>('/student/school/' + schoolId)
             .subscribe(data => {
                 this.students = [...data];
-
             }, error => {
                 console.error(error);
             })
