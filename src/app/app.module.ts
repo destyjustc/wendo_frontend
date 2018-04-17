@@ -27,6 +27,7 @@ import {PaymentPage} from '../pages/student/payment/payment';
 import { StudentRelationPage } from '../pages/student-relation/student-relation';
 import {LoginPage} from '../pages/login/login'
 import {UserPage} from '../pages/user/user';
+import {EditUserPage} from '../pages/user/edit-user/edit-user';
 
 export class ApiInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -50,7 +51,8 @@ export class ApiInterceptor implements HttpInterceptor {
         PaymentPage,
         StudentRelationPage,
         LoginPage,
-        UserPage
+        UserPage,
+        EditUserPage
     ],
     imports: [
         BrowserModule,
@@ -75,7 +77,8 @@ export class ApiInterceptor implements HttpInterceptor {
         PaymentPage,
         StudentRelationPage,
         LoginPage,
-        UserPage
+        UserPage,
+        EditUserPage
     ],
     providers: [
         StatusBar,

@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {HttpClient} from '@angular/common/http';
 import {StoreService} from '../../services/store';
+import {EditUserPage} from './edit-user/edit-user';
 
 @Component({
     selector: 'page-user',
@@ -17,12 +18,16 @@ export class UserPage {
 
     ionViewWillEnter() {
         let userId = this.store.getUserId();
-        this.http.get<Array<Object>>('/user/' + userId)
+        this.http.get<Object>('/user/' + userId)
             .subscribe(data => {
                 this.user = data;
                 this.user['password'] = this.user['password'].replace(/./g, '*');
             }, error => {
                 console.error(error);
             })
+    }
+
+    goToEditUserPage() {
+        this.navCtrl.push(EditUserPage);
     }
 }
