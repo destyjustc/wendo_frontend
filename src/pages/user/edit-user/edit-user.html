@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>编辑个人信息</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+
+        <ion-item>
+            <ion-label floating>用户名</ion-label>
+            <ion-input type="text" [(ngModel)]="user.username" disabled="true"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>名字</ion-label>
+            <ion-input type="text" [(ngModel)]="user.firstname"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>姓氏</ion-label>
+            <ion-input type="text" [(ngModel)]="user.lastname"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>邮箱</ion-label>
+            <ion-input type="email" [(ngModel)]="user.email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>电话</ion-label>
+            <ion-input type="tel" [(ngModel)]="user.phone"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>密码</ion-label>
+            <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+        </ion-item>
+
+        <div padding>
+            <button ion-button color="primary" block (click)="editUser()">保存个人信息</button>
+        </div>
+
+    </ion-list>
+</ion-content>

@@ -66,5 +66,4 @@ export class StoreService {
     getUserId() {
         return this.userId;
     }
-
 }
