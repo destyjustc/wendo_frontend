@@ -1,22 +1,39 @@
-<ion-header>
-    <ion-navbar>
-        <ion-title>
-            学生关系
-        </ion-title>
-    </ion-navbar>
-</ion-header>
+<!--<ion-header>-->
+    <!--<ion-navbar>-->
+        <!--<ion-title>-->
+            <!--学生关系-->
+        <!--</ion-title>-->
+    <!--</ion-navbar>-->
+<!--</ion-header>-->
 
 <ion-header>
     <ion-toolbar>
         <ion-title>学生关系</ion-title>
         <ion-buttons end>
-            <button ion-button (click)="createRelationGroup()">
+            <button ion-button (click)="goToCreateRelationPage()">
                 创建关系
             </button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+    <ion-item-group *ngFor="let group of relationGroups">
+        <ion-item-divider color="light">{{group.name}}</ion-item-divider>
+        <ion-item *ngFor="let relation of group.relations">
+            <h2>学生：{{relation.student.firstname + relation.student.lastname}}</h2>
+            <p>关系内容：{{relation.content}}</p>
+            <p>截止日期：{{relation.deadline}}</p>
+        </ion-item>
+    </ion-item-group>
+    <!--<ion-list *ngFor="let group of relationGroups">-->
+        <!--<ion-list-header>-->
+            <!--{{group.name}}-->
+        <!--</ion-list-header>-->
+        <!--<ion-item *ngFor="let relation of group.relations">-->
+            <!--<h2>{{relation.student.firstname + relation.student.lastname}}</h2>-->
+            <!--<p>{{relation.content}}</p>-->
+            <!--<p>{{relation.deadline}}</p>-->
+        <!--</ion-item>-->
+    <!--</ion-list>-->
 </ion-content>

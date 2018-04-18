@@ -1,6 +1,6 @@
 import {NgModule, ErrorHandler, APP_INITIALIZER, Injectable} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {IonicApp, IonicModule, IonicErrorHandler, NavController} from 'ionic-angular';
+import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
 
 import {StudentPage} from '../pages/student/student';
@@ -26,6 +26,7 @@ import {ViewStudentPage} from '../pages/student/view-student/view-student';
 import {PaymentPage} from '../pages/student/payment/payment';
 
 import {StudentRelationPage} from '../pages/student-relation/student-relation';
+import {CreateStudentRelationPage} from '../pages/student-relation/create-student-relation/create-student-relation';
 import {LoginPage} from '../pages/login/login'
 import {UserPage} from '../pages/user/user';
 import {EditUserPage} from '../pages/user/edit-user/edit-user';
@@ -74,6 +75,7 @@ export class ApiInterceptor implements HttpInterceptor {
         ViewStudentPage,
         PaymentPage,
         StudentRelationPage,
+        CreateStudentRelationPage,
         LoginPage,
         UserPage,
         EditUserPage
@@ -100,6 +102,7 @@ export class ApiInterceptor implements HttpInterceptor {
         ViewStudentPage,
         PaymentPage,
         StudentRelationPage,
+        CreateStudentRelationPage,
         LoginPage,
         UserPage,
         EditUserPage

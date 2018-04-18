@@ -1,11 +1,63 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            学生关系
+            创建学生关系
         </ion-title>
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label floating>内容</ion-label>
+            <ion-input type="text" [(ngModel)]="relation.content"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>截止日期</ion-label>
+            <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="relation.deadline"></ion-datetime>
+        </ion-item>
+    </ion-list>
+    <!--<ion-list radio-group [(ngModel)]="selectedStudent">-->
+        <!--<ion-list>-->
+            <!--<ion-item *ngFor="let student of students">-->
+                <!--<ion-label>{{student.firstname + student.lastname}}</ion-label>-->
+                <!--<ion-radio value="{{student.id}}"></ion-radio>-->
+            <!--</ion-item>-->
+        <!--</ion-list>-->
+    <!--</ion-list>-->
+    <ion-item>
+        <ion-label>关系学生</ion-label>
+        <ion-select [(ngModel)]="selectedStudent">
+            <ion-option *ngFor="let student of students" value="{{student.id}}">{{student.firstname + student.lastname}}</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-list>
+        <ion-item>
+            <ion-label>选择已有学生关系组</ion-label>
+            <ion-toggle [(ngModel)]="pickExist"></ion-toggle>
+        </ion-item>
 
+        <!--<ion-list *ngIf="pickExist">-->
+            <!--<ion-item *ngFor="let relationGroup of relationGroups">-->
+                <!--<ion-label>{{relationGroup.name}}</ion-label>-->
+                <!--<ion-radio value="{{relationGroup.id}}"></ion-radio>-->
+            <!--</ion-item>-->
+        <!--</ion-list>-->
+
+        <ion-item *ngIf="pickExist">
+            <ion-label>关系组</ion-label>
+            <ion-select [(ngModel)]="selectedGroup">
+                <ion-option *ngFor="let relationGroup of relationGroups" value="{{relationGroup.id}}">{{relationGroup.name}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item *ngIf="!pickExist">
+            <ion-label floating>新关系组名称</ion-label>
+            <ion-input type="text" [(ngModel)]="newRelationGroup.name"></ion-input>
+        </ion-item>
+    </ion-list>
+
+    <div padding>
+        <button ion-button color="primary" block (click)="createRelation()">创建关系</button>
+    </div>
 </ion-content>
