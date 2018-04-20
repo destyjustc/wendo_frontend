@@ -16,6 +16,9 @@ export class TabsPage {
   tab3Root = StudentPage;
   tab4Root = StudentRelationPage;
   tab5Root = TeacherPage;
+  role: string;
 
-  constructor(private store: StoreService) {}
+  constructor(private store: StoreService) {
+    this.role = this.store.getUserRole();
+  }
 }
