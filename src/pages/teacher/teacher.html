@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>教师列表</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="goToCreateTeacherPage()">
+        创建教师
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-group>
+
+      <button ion-item *ngFor="let teacher of teachers" (click)="goToViewTeacherPage(teacher)">
+        <ion-avatar item-start>
+          <img [src]="'https://ui-avatars.com/api/?name='+teacher.firstname+'+'+teacher.lastname">
+        </ion-avatar>
+        <h2>{{teacher.firstname + teacher.lastname}}</h2>
+        <p>{{teacher.phone}}</p>
+      </button>
+  </ion-item-group>
+</ion-content>

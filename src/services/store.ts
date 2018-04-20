@@ -10,6 +10,7 @@ export class StoreService {
     schoolId: string;
     userId: string;
     logoutSubject: Subject<any> = new Subject();
+    role: string;
 
     constructor(private http: HttpClient) {}
 
@@ -38,6 +39,7 @@ export class StoreService {
             this.isAuth = true;
             this.setSchoolId(data['school_id']);
             this.setUserId(data['id']);
+            this.setUserRole(data['role']['name']);
             localStorage.setItem('authToken', authToken);
         }).catch(() => {
             // console.error(error);
@@ -64,5 +66,13 @@ export class StoreService {
 
     getUserId() {
         return this.userId;
+    }
+
+    setUserRole(role) {
+      this.role = role;
+    }
+
+    getUserRole() {
+      return this.role;
     }
 }

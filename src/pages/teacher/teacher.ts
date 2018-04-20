@@ -1,0 +1,44 @@
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { HttpClient } from '@angular/common/http';
+import { StoreService } from '../../services/store';
+
+@Component({
+  selector: 'page-teacher',
+  templateUrl: 'teacher.html'
+})
+export class TeacherPage {
+  teachers: any = [];
+
+  constructor(
+    public navCtrl: NavController,
+    private http: HttpClient,
+    private store: StoreService
+  ) {}
+
+  ionViewWillEnter() {
+    let schoolId = this.store.getSchoolId();
+    this.http.get<Array<Object>>('/teacher/school/' + schoolId).subscribe(
+      data => {
+        this.teachers = [...data];
+        console.log('teachers ', this.teachers);
+      },
+      error => {
+        console.error(error);
+      }
+    );
+  }
+
+  goToCreateTeacherPage() {
+    // let schoolId = this.store.getSchoolId();
+    // this.navCtrl.push(CreateStudentPage, { schoolId: schoolId });
+  }
+
+  goToViewTeacherPage(teacher) {
+    // let schoolId = this.store.getSchoolId();
+    // this.navCtrl.push(ViewStudentPage, {
+    //   schoolId: schoolId,
+    //   studentId: student.id
+    // });
+  }
+}
