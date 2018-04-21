@@ -32,6 +32,7 @@ import {UserPage} from '../pages/user/user';
 import {EditUserPage} from '../pages/user/edit-user/edit-user';
 import {TeacherPage} from '../pages/teacher/teacher';
 import {CreateTeacherPage} from '../pages/teacher/create-teacher/create-teacher';
+import {ViewTeacherPage} from '../pages/teacher/view-teacher/view-teacher';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
@@ -82,7 +83,8 @@ export class ApiInterceptor implements HttpInterceptor {
         UserPage,
         EditUserPage,
         TeacherPage,
-        CreateTeacherPage
+        CreateTeacherPage,
+        ViewTeacherPage
     ],
     imports: [
         BrowserModule,
@@ -111,7 +113,8 @@ export class ApiInterceptor implements HttpInterceptor {
         UserPage,
         EditUserPage,
         TeacherPage,
-        CreateTeacherPage
+        CreateTeacherPage,
+        ViewTeacherPage
     ],
     providers: [
         StatusBar,

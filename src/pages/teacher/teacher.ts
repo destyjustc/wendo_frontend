@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { StoreService } from '../../services/store';
 import {CreateTeacherPage} from './create-teacher/create-teacher';
+import {ViewTeacherPage} from './view-teacher/view-teacher';
 
 @Component({
   selector: 'page-teacher',
@@ -36,10 +37,10 @@ export class TeacherPage {
   }
 
   goToViewTeacherPage(teacher) {
-    // let schoolId = this.store.getSchoolId();
-    // this.navCtrl.push(ViewStudentPage, {
-    //   schoolId: schoolId,
-    //   studentId: student.id
-    // });
+    let schoolId = this.store.getSchoolId();
+    this.navCtrl.push(ViewTeacherPage, {
+      schoolId: schoolId,
+      teacherId: teacher.id
+    });
   }
 }

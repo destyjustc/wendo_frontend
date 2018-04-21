@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons end>
+      <button ion-button (click)="goToEditTeacherPage()">
+        编辑教师
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-item>
+      <h2>用户名</h2>
+      <p>{{teacher.username}}</p>
+    </ion-item>
+
+    <ion-item>
+      <h2>密码</h2>
+      <p>{{teacher.password}}</p>
+    </ion-item>
+
+    <ion-item>
+      <h2>名字</h2>
+      <p>{{teacher.firstname}}</p>
+    </ion-item>
+
+    <ion-item>
+      <h2>姓氏</h2>
+      <p>{{teacher.lastname}}</p>
+    </ion-item>
+
+    <ion-item>
+      <h2>邮箱</h2>
+      <p>{{teacher.email}}</p>
+    </ion-item>
+
+    <ion-item>
+      <h2>电话</h2>
+      <p>{{teacher.phone}}</p>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
