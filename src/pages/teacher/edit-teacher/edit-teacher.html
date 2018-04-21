@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>编辑教师</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>用户名</ion-label>
+      <ion-input type="text" [(ngModel)]="teacher.username" disabled="true"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>名字</ion-label>
+      <ion-input type="text" [(ngModel)]="teacher.firstname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>姓氏</ion-label>
+      <ion-input type="text" [(ngModel)]="teacher.lastname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>邮箱</ion-label>
+      <ion-input type="email" [(ngModel)]="teacher.email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>电话</ion-label>
+      <ion-input type="tel" [(ngModel)]="teacher.phone"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>密码</ion-label>
+      <ion-input type="password" [(ngModel)]="teacher.password"></ion-input>
+    </ion-item>
+
+    <div padding>
+      <button ion-button color="primary" block (click)="editTeacher()">保存教师</button>
+    </div>
+
+  </ion-list>
+</ion-content>

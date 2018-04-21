@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NavController, NavParams } from 'ionic-angular';
-import {EditTeacherPage} from '../edit-teacher/edit-teacher';
 
 @Component({
-  selector: 'page-view-teacher',
-  templateUrl: 'view-teacher.html'
+  selector: 'page-edit-teacher',
+  templateUrl: 'edit-teacher.html'
 })
-export class ViewTeacherPage {
+export class EditTeacherPage {
 
   teacher: Object = {};
 
@@ -19,13 +18,18 @@ export class ViewTeacherPage {
     this.http.get<Array<Object>>('/teacher/school/' + this.navParams.get('schoolId') + '/' + this.navParams.get('teacherId'))
       .subscribe(data => {
         this.teacher = data;
-        this.teacher['password'] = this.teacher['password'].replace(/./g, '*');
       }, error => {
         console.error(error);
       })
   }
 
-  goToEditTeacherPage() {
-    this.navCtrl.push(EditTeacherPage, {schoolId: this.navParams.get('schoolId'), teacherId: this.navParams.get('teacherId')});
+  editTeacher() {
+    this.http.put('/teacher/school/' + this.navParams.get('schoolId') + '/' + this.navParams.get('teacherId'), this.teacher)
+      .subscribe(data => {
+        this.navCtrl.pop();
+      }, error => {
+        console.error(error);
+      })
   }
+
 }
