@@ -42,10 +42,9 @@
             <p>{{user.password}}</p>
         </ion-item>
 
+        <div padding>
+            <button ion-button color="primary" block (click)="store.logout()">退出登录</button>
+        </div>
+
     </ion-list>
-    <ion-buttons end>
-        <button ion-button (click)="store.logout()">
-            退出登录
-        </button>
-    </ion-buttons>
 </ion-content>
